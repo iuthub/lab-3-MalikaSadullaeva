@@ -15,7 +15,7 @@
 
 
 		<div id="listarea">
-			<ul id="musiclist">
+			<!-- <ul id="musiclist">
 				<li class="mp3item">
 					<a href="songs/Be More.mp3">Be More.mp3</a>
 					(5438375 b)
@@ -45,6 +45,30 @@
 					<a href="music.php?playlist=playlist.txt">playlist.txt</a>
 				</li>
 			</ul>
-		</div>
+ -->		
+				<ul id="musiclist">
+					<?php  
+					$dir="songs";
+					$arr=glob($dir."/*mp3");
+					foreach ($arr as $dir1) {
+						echo "<li class=\"mp3item\"><a href=\"$dir1\">" . basename($dir1) . "</a></li>";
+						 
+					}
+
+
+					$arr1=glob($dir."/*txt");
+							foreach ($arr1 as $dir2) {
+					echo "<li class=\"playlistitem\"><a href=\"$dir2\">" . basename($dir2) . "</a></li>";
+						 
+					}
+
+
+
+					?>
+					
+					
+				</ul>
+
+ </div>
 	</body>
 </html>
