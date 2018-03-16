@@ -14,61 +14,30 @@
 		</div>
 
 
-		<div id="listarea">
-			<!-- <ul id="musiclist">
-				<li class="mp3item">
-					<a href="songs/Be More.mp3">Be More.mp3</a>
-					(5438375 b)
-				</li>
+		<div id="listarea">		
+			<ul id="musiclist">
+				<?php  
+					if(isset($_REQUEST["playlist"])){
+						$arr3=explode("\n", file_get_contents("songs/".$_REQUEST["playlist"]));
+						//echo "<a href=\"music.php?playlist=\">" ."". "</a>";
+						foreach ($arr3 as $key=>$value) {
+						echo "<li class=\"playlistitem\"><a href=\"songs/$value\">" . basename($value) . "</a></li>";
+						}
 
-				<li class="mp3item">
-					<a href="songs/Drift Away.mp3">Drift Away.mp3</a>
-					(5724612 b)
-				</li>
-
-				<li class="mp3item">
-					<a href="songs/Hello.mp3">Hello.mp3</a>
-
-					(1871110 b)
-				</li>
-
-				<li class="mp3item">
-					<a href="songs/Panda Sneeze.mp3">Panda Sneeze.mp3</a>
-					(58 b)
-				</li>
-
-				<li class="playlistitem">
-					<a href="music.php?playlist=mypicks.txt">mypicks.txt</a>
-				</li>
-
-				<li class="playlistitem">
-					<a href="music.php?playlist=playlist.txt">playlist.txt</a>
-				</li>
+						//echo ">>>>>> <li class=\"playlistitem\"><a href=\"music.php?playlist=".basename($arr3)."\">" . basename($arr3) . "</a></li>";						
+					}else{
+						$dir="songs";
+						$arr=glob($dir."/*mp3");
+						foreach ($arr as $dir1) {
+							echo "<li class=\"mp3item\"><a href=\"$dir1\">" . basename($dir1) . "</a></li>";
+						}
+						$arr1=glob($dir."/*txt");
+						foreach ($arr1 as $dir2) {
+							echo "<li class=\"playlistitem\"><a href=\"music.php?playlist=".basename($dir2)."\">" . basename($dir2) . "</a></li>";
+						}
+					}
+				?>	
 			</ul>
- -->		
-				<ul id="musiclist">
-					<?php  
-					$dir="songs";
-					$arr=glob($dir."/*mp3");
-					foreach ($arr as $dir1) {
-						echo "<li class=\"mp3item\"><a href=\"$dir1\">" . basename($dir1) . "</a></li>";
-						 
-					}
-
-
-					$arr1=glob($dir."/*txt");
-							foreach ($arr1 as $dir2) {
-					echo "<li class=\"playlistitem\"><a href=\"$dir2\">" . basename($dir2) . "</a></li>";
-						 
-					}
-
-
-
-					?>
-					
-					
-				</ul>
-
- </div>
+		</div>
 	</body>
 </html>
